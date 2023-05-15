@@ -1,1 +1,179 @@
-<p>register-patient works!</p>
+<div class="register">
+  <h1>Add new patient</h1>
+  <div class="register-form">
+    <form class="register-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!--first name-->
+      <input
+        formControlName="firstName"
+        type="text"
+        class="register-form-control"
+        placeholder="First Name"
+      />
+      <mat-error *ngIf="form.controls.firstName.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      <!--last name-->
+      <input
+        formControlName="lastName"
+        type="text"
+        class="register-form-control"
+        placeholder="Last Name"
+      />
+      <mat-error *ngIf="form.controls.lastName.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      <!--email-->
+      <input
+        formControlName="email"
+        type="email"
+        class="register-form-control"
+        placeholder="E-mail"
+      />
+      <mat-error *ngIf="form.controls.email.hasError('email')"
+      >Invalid input</mat-error
+      ><br />
+
+      <!--password-->
+      <input
+        formControlName="password"
+        type="password"
+        class="register-form-control"
+        placeholder="Password - at least 8 characters"
+      />
+      <mat-error *ngIf="form.controls.password.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      <!--gender-->
+      <mat-form-field appearance="fill" class="register-form-control-select">
+        <mat-label>Select your gender</mat-label>
+        <mat-select [formControl]="form.controls.genderControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br />
+
+      <!--birthdate-->
+      <mat-form-field appearance="fill" class="register-form-datepicker">
+        <mat-label>Choose your birthdate</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [matDatepickerFilter]="unavailableDays"
+          formControlName="birthdate"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.controls.birthdate.hasError('matEndDateInvalid')"
+        >Invalid end date</mat-error
+        >
+      </mat-form-field>
+      <br />
+
+      <!--address-->
+      <input
+        formControlName="address"
+        type="text"
+        class="register-form-control"
+        placeholder="Address"
+      />
+      <mat-error *ngIf="form.controls.address.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      <!--phone-->
+      <input
+        formControlName="phoneNumber"
+        type="number"
+        class="register-form-control"
+        placeholder="Phone Number"
+      />
+      <mat-error
+        *ngIf="
+          form.controls.phoneNumber.hasError('pattern') ||
+          form.controls.phoneNumber.hasError('minLength') ||
+          form.controls.phoneNumber.hasError('maxLength')
+        "
+      >Invalid input</mat-error
+      ><br />
+
+      <!--terms and conditions-->
+      <section class="register-form-checkbox">
+        <mat-checkbox
+          class="main-form-checkbox"
+          [(ngModel)]="termsAndConditions"
+          [ngModelOptions]="{ standalone: true }"
+        ><a>I agree to </a
+        ><a class="termAndConditions">Terms and Conditions</a></mat-checkbox
+        >
+      </section>
+
+      <button
+        mat-raised-button
+        class="register-form-submit"
+        type="submit"
+        color="primary"
+        [disabled]="form.invalid || !termsAndConditions"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+
+  <!--<div class="table-patients-container">
+    <table mat-table [dataSource]="patients" class="table-patients">
+      &lt;!&ndash;- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" &ndash;&gt;
+
+      &lt;!&ndash; First Name Column &ndash;&gt;
+      <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef>First Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+      </ng-container>
+
+      &lt;!&ndash; Last Name Column &ndash;&gt;
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef>Last Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+      </ng-container>
+
+      &lt;!&ndash; Email Column &ndash;&gt;
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>E-mail</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      &lt;!&ndash; Gender Column &ndash;&gt;
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef>Gender</th>
+        <td mat-cell *matCellDef="let element">{{ element.gender }}</td>
+      </ng-container>
+
+      &lt;!&ndash; Birthdate Column &ndash;&gt;
+      <ng-container matColumnDef="birthdate">
+        <th mat-header-cell *matHeaderCellDef>Birthdate</th>
+        <td mat-cell *matCellDef="let element">{{ element.birthdate }}</td>
+      </ng-container>
+
+      &lt;!&ndash; Address Column &ndash;&gt;
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+      </ng-container>
+
+      &lt;!&ndash; Phone Number Column &ndash;&gt;
+      <ng-container matColumnDef="phone_number">
+        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+        <td mat-cell *matCellDef="let element">{{ element.phone_number }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>-->
+</div>

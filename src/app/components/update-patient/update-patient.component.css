@@ -1,0 +1,35 @@
+.update {
+  margin: auto;
+  text-align: center;
+}
+
+.update-form {
+  display: block;
+}
+
+.update-form-control {
+  width: 250px;
+  height: 20px;
+  margin-top: 10px;
+  font-size: medium;
+}
+
+.update-form-control-select {
+  width: 260px;
+  height: 20px;
+  margin-top: 10px;
+  font-size: small;
+}
+
+.update-form-datepicker {
+  width: 260px;
+  margin-top: 20px;
+  font-size: small;
+}
+
+.update-form-submit {
+  font-size: medium;
+  height: 40px;
+  width: 150px;
+  margin: 10px auto;
+}

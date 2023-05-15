@@ -1,0 +1,108 @@
+<div class="update">
+  <h1>Update patient</h1>
+  <div class="update-form">
+    <form class="update-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!--phone-->
+      <input
+        formControlName="idPatient"
+        type="number"
+        class="update-form-control"
+        placeholder="Patient ID"
+      />
+      <mat-error
+        *ngIf="
+          form.controls.phoneNumber.hasError('pattern')
+        "
+      >Invalid input</mat-error
+      ><br />
+
+      <!--first name-->
+      <input
+        formControlName="firstName"
+        type="text"
+        class="update-form-control"
+        placeholder="First Name"
+      />
+      <mat-error *ngIf="form.controls.firstName.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      <!--last name-->
+      <input
+        formControlName="lastName"
+        type="text"
+        class="update-form-control"
+        placeholder="Last Name"
+      />
+      <mat-error *ngIf="form.controls.lastName.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      <!--gender-->
+      <mat-form-field appearance="fill" class="update-form-control-select">
+        <mat-label>Select your gender</mat-label>
+        <mat-select [formControl]="form.controls.genderControl" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br />
+
+      <!--birthdate-->
+      <mat-form-field appearance="fill" class="update-form-datepicker">
+        <mat-label>Choose your birthdate</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [matDatepickerFilter]="unavailableDays"
+          formControlName="birthdate"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.controls.birthdate.hasError('matEndDateInvalid')"
+        >Invalid end date</mat-error
+        >
+      </mat-form-field>
+      <br />
+
+      <!--address-->
+      <input
+        formControlName="address"
+        type="text"
+        class="update-form-control"
+        placeholder="Address"
+      />
+      <mat-error *ngIf="form.controls.address.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      <!--phone-->
+      <input
+        formControlName="phoneNumber"
+        type="number"
+        class="update-form-control"
+        placeholder="Phone Number"
+      />
+      <mat-error
+        *ngIf="
+          form.controls.phoneNumber.hasError('pattern') ||
+          form.controls.phoneNumber.hasError('minLength') ||
+          form.controls.phoneNumber.hasError('maxLength')
+        "
+      >Invalid input</mat-error
+      ><br />
+
+      <button
+        mat-raised-button
+        class="update-form-submit"
+        type="submit"
+        color="primary"
+        [disabled]="form.invalid"
+      >
+        Update
+      </button>
+    </form>
+  </div>
+</div>

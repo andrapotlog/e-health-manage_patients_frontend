@@ -1,0 +1,55 @@
+.register {
+  margin: auto;
+  text-align: center;
+}
+
+.register-form {
+  display: block;
+}
+
+.register-form-control {
+  width: 250px;
+  height: 20px;
+  margin-top: 10px;
+  font-size: medium;
+}
+
+.register-form-control-select {
+  width: 260px;
+  height: 20px;
+  margin-top: 10px;
+  font-size: small;
+}
+
+.register-form-datepicker {
+  width: 260px;
+  margin-top: 20px;
+  font-size: small;
+}
+
+.register-form-checkbox{
+  margin-top: 10px;
+}
+
+.register-form-submit {
+  font-size: medium;
+  height: 40px;
+  width: 150px;
+  margin: 10px auto;
+}
+
+.termAndConditions {
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+/*
+
+.table-patients {
+  width: 100%;
+  text-align: left;
+}
+
+.table-patients-container {
+  margin-bottom: 36px;
+}
+*/
