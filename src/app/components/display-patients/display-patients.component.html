@@ -1,0 +1,187 @@
+<div class="display">
+  <h1>Patients</h1>
+  <div class="display-content">
+    <button
+      mat-raised-button
+      class="downloadBttn"
+      type="basic"
+      color="primary"
+      (click)="downloadPatients()"
+    >
+      Download
+    </button>
+
+    <div *ngIf="downloaded">
+      <div class="display-table-container">
+        <table mat-table [dataSource]="patients" class="display-table">
+          <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- First Name Column -->
+          <ng-container matColumnDef="first_name">
+            <th mat-header-cell *matHeaderCellDef>First Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+          </ng-container>
+
+          <!-- Last Name Column -->
+          <ng-container matColumnDef="last_name">
+            <th mat-header-cell *matHeaderCellDef>Last Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <!--<div class="register-form">
+    <form class="register-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      &lt;!&ndash;first name&ndash;&gt;
+      <input
+        formControlName="firstName"
+        type="text"
+        class="register-form-control"
+        placeholder="First Name"
+      />
+      <mat-error *ngIf="form.controls.firstName.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      &lt;!&ndash;last name&ndash;&gt;
+      <input
+        formControlName="lastName"
+        type="text"
+        class="register-form-control"
+        placeholder="Last Name"
+      />
+      <mat-error *ngIf="form.controls.lastName.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      &lt;!&ndash;email&ndash;&gt;
+      <input
+        formControlName="email"
+        type="email"
+        class="register-form-control"
+        placeholder="E-mail"
+      />
+      <mat-error *ngIf="form.controls.email.hasError('email')"
+      >Invalid input</mat-error
+      ><br />
+
+      &lt;!&ndash;password&ndash;&gt;
+      <input
+        formControlName="password"
+        type="password"
+        class="register-form-control"
+        placeholder="Password - at least 8 characters"
+      />
+      <mat-error *ngIf="form.controls.password.hasError('pattern')||
+          form.controls.password.hasError('minLength')"
+      >Invalid input</mat-error
+      ><br />
+
+      &lt;!&ndash;gender&ndash;&gt;
+      <mat-form-field appearance="fill" class="register-form-control-select">
+        <mat-label>Select your gender</mat-label>
+        <mat-select [formControl]="form.controls.genderControl" required>
+          <mat-option>&#45;&#45;</mat-option>
+          <mat-option *ngFor="let gender of genders" [value]="gender">
+            {{ gender }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br />
+
+      &lt;!&ndash;birthdate&ndash;&gt;
+      <mat-form-field appearance="fill" class="register-form-datepicker">
+        <mat-label>Choose your birthdate</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [matDatepickerFilter]="unavailableDays"
+          formControlName="birthdate"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.controls.birthdate.hasError('matEndDateInvalid')"
+        >Invalid end date</mat-error
+        >
+      </mat-form-field>
+      <br />
+
+      &lt;!&ndash;address&ndash;&gt;
+      <input
+        formControlName="address"
+        type="text"
+        class="register-form-control"
+        placeholder="Address"
+      />
+      <mat-error *ngIf="form.controls.address.hasError('pattern')"
+      >Invalid input</mat-error
+      ><br />
+
+      &lt;!&ndash;phone&ndash;&gt;
+      <input
+        formControlName="phoneNumber"
+        type="number"
+        class="register-form-control"
+        placeholder="Phone Number"
+      />
+      <mat-error
+        *ngIf="
+          form.controls.phoneNumber.hasError('pattern') ||
+          form.controls.phoneNumber.hasError('minLength') ||
+          form.controls.phoneNumber.hasError('maxLength')
+        "
+      >Invalid input</mat-error
+      ><br />
+
+      &lt;!&ndash;terms and conditions&ndash;&gt;
+      <section class="register-form-checkbox">
+        <mat-checkbox
+          class="main-form-checkbox"
+          [(ngModel)]="termsAndConditions"
+          [ngModelOptions]="{ standalone: true }"
+        ><a>I agree to </a
+        ><a class="termAndConditions">Terms and Conditions</a></mat-checkbox
+        >
+      </section>
+
+      <button
+        mat-raised-button
+        class="register-form-submit"
+        type="submit"
+        color="primary"
+        [disabled]="form.invalid || !termsAndConditions"
+      >
+        Register
+      </button>
+    </form>
+  </div>-->
+
+  <!--<div class="display-table-container">
+    <table mat-table [dataSource]="patientsList" class="display-table">
+      &lt;!&ndash;- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" &ndash;&gt;
+
+      &lt;!&ndash; First Name Column &ndash;&gt;
+      <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef>First Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+      </ng-container>
+
+      &lt;!&ndash; Last Name Column &ndash;&gt;
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef>Last Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>-->
+</div>

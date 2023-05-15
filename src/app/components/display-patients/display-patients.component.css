@@ -1,0 +1,20 @@
+.display {
+  margin: auto;
+  text-align: center;
+}
+
+.downloadBttn {
+  font-size: medium;
+  height: 40px;
+  width: 150px;
+  margin: 10px auto;
+}
+
+.display-table {
+  width: 250px;
+  text-align: left;
+}
+
+.display-table-container {
+  margin-bottom: 36px;
+}

@@ -62,11 +62,7 @@ export class RegisterPatientComponent implements OnInit {
 
   constructor(private registerService: RegisterService) {}
 
-  ngOnInit(): void {
-    this.registerService
-      .getPatients()
-      .subscribe((patients) => console.log(patients));
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     //console.log(this.form.controls);

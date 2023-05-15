@@ -13,10 +13,6 @@ export class RegisterService {
 
   constructor(private http: HttpClient) {}
 
-  getPatients(): Observable<fromModel.Patients> {
-    return this.http.get<fromModel.Patients>(this.url);
-  }
-
   addPatient(
     patient: fromModel.PatientDetails
     /*first_name: string | null,
