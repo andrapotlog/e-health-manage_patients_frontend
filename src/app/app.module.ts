@@ -10,14 +10,16 @@ import { RegisterPatientComponent } from './components/register-patient/register
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdatePatientComponent } from './components/update-patient/update-patient.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DetelePatientsComponent } from './components/detele-patient/detele-patients.component';
+import { DeletePatientsComponent } from './components/delete-patient/delete-patients.component';
+import { DisplayPatientsComponent } from './components/display-patients/display-patients.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterPatientComponent,
     UpdatePatientComponent,
-    DetelePatientsComponent,
+    DeletePatientsComponent,
+    DisplayPatientsComponent,
   ],
   imports: [
     BrowserModule,

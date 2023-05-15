@@ -1,0 +1,22 @@
+.delete {
+  margin: auto;
+  text-align: center;
+}
+
+.delete-form {
+  display: block;
+}
+
+.delete-form-control {
+  width: 250px;
+  height: 20px;
+  margin-top: 10px;
+  font-size: medium;
+}
+
+.delete-form-submit {
+  font-size: medium;
+  height: 40px;
+  width: 150px;
+  margin: 10px auto;
+}

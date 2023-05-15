@@ -20,6 +20,10 @@ p {
   margin: 0;
 }
 
+.display-patients {
+  margin: 20px 0;
+}
+
 .register-patient {
   margin: 20px 0;
 }

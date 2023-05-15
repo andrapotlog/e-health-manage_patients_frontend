@@ -1,0 +1,30 @@
+<div class="delete">
+  <h1>Delete patient</h1>
+  <div class="delete-form">
+    <form class="delete-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <!--id-->
+      <input
+        formControlName="idPatient"
+        type="number"
+        class="delete-form-control"
+        placeholder="Patient ID"
+      />
+      <mat-error
+        *ngIf="
+          form.controls.idPatient.hasError('pattern')
+        "
+      >Invalid input</mat-error
+      ><br />
+
+      <button
+        mat-raised-button
+        class="delete-form-submit"
+        type="submit"
+        color="primary"
+        [disabled]="form.invalid"
+      >
+        Delete
+      </button>
+    </form>
+  </div>
+</div>

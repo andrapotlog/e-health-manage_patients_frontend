@@ -2,7 +2,7 @@
   <h1>Update patient</h1>
   <div class="update-form">
     <form class="update-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <!--phone-->
+      <!--id-->
       <input
         formControlName="idPatient"
         type="number"
@@ -11,7 +11,7 @@
       />
       <mat-error
         *ngIf="
-          form.controls.phoneNumber.hasError('pattern')
+          form.controls.idPatient.hasError('pattern')
         "
       >Invalid input</mat-error
       ><br />

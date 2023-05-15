@@ -42,7 +42,8 @@
         class="register-form-control"
         placeholder="Password - at least 8 characters"
       />
-      <mat-error *ngIf="form.controls.password.hasError('pattern')"
+      <mat-error *ngIf="form.controls.password.hasError('pattern')||
+          form.controls.password.hasError('minLength')"
       >Invalid input</mat-error
       ><br />
 
